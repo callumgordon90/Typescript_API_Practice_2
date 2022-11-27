@@ -14,18 +14,23 @@ app.use(bodyParser.json())
 
 
 //This is a get endpoint:
-app.get('/:id',(req: Request, res: Response) => {
+app.get('/Id/:id/Name/:name',(req: Request, res: Response) => {
     res.send({
-        message: "Hello World!"
-        data: req.params.id
+        message: "Hello World!",
+        id: req.params.id,
+        name: req.params.name
     });
 })
 
 
 //post request endpoint:
-app.post('/', (req: Request, res: Response) => {
+app.post('/Id/:id/Name/:name', (req: Request, res: Response) => {
     res.send({
-        data: req.body
+        data: req.body,
+        params: {
+            id: req.params.id,
+            name: req.params.name
+        }
     })
 })
 

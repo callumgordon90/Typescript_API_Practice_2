@@ -13,13 +13,21 @@ app.use(body_parser_1.default.urlencoded({ extended: false }));
 app.use(body_parser_1.default.json());
 //Note: express also allows us to perform the same function that bodyparser does
 //This is a get endpoint:
-app.get('/:id', (req, res) => {
-    res.send('Hello world!');
+app.get('/Id/:id/Name/:name', (req, res) => {
+    res.send({
+        message: "Hello World!",
+        id: req.params.id,
+        name: req.params.name
+    });
 });
 //post request endpoint:
-app.post('/', (req, res) => {
+app.post('/Id/:id/Name/:name', (req, res) => {
     res.send({
-        data: req.body
+        data: req.body,
+        params: {
+            id: req.params.id,
+            name: req.params.name
+        }
     });
 });
 app.listen(3000, () => {

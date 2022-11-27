@@ -5,6 +5,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const body_parser_1 = __importDefault(require("body-parser"));
+const dotenv_1 = __importDefault(require("dotenv"));
+//The following line enables us to import dotenv:
+dotenv_1.default.config();
 const app = (0, express_1.default)();
 //body parser: 
 // this allows us to recieve requests from url encoded body but NOT from raw data
@@ -30,6 +33,6 @@ app.post('/Id/:id/Name/:name', (req, res) => {
         }
     });
 });
-app.listen(3000, () => {
-    console.log('The application is listening on port 3000!');
+app.listen(process.env.PORT, () => {
+    console.log(`The application is listening on port ${process.env.PORT}!`);
 });

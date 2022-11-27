@@ -3,6 +3,8 @@ import bodyParser from 'body-parser';
 import { Request, Response } from 'express';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
+//The following line enables us to import dotenv:
+dotenv.config();
 
 const app = express();
 
@@ -37,5 +39,6 @@ app.post('/Id/:id/Name/:name', (req: Request, res: Response) => {
 })
 
 app.listen(process.env.PORT, () => {
-    console.log('The application is listening on port 3000!')
+
+    console.log(`The application is listening on port ${process.env.PORT}!`)
 })

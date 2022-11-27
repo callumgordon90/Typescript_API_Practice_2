@@ -14,7 +14,7 @@ app.use(bodyParser.json())
 
 
 //This is a get endpoint:
-app.get('/Id/:id/Name/:name',(req: Request, res: Response) => {
+app.get('/details/:id',(req: Request, res: Response) => {
     res.send({
         message: "Hello World!",
         id: req.params.id,

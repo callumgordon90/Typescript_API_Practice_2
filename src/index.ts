@@ -1,5 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
+import { Request, Response } from 'express';
 
 const app = express();
 
@@ -13,13 +14,13 @@ app.use(bodyParser.json())
 
 
 //This is a get endpoint:
-app.get('/',(req, res) => {
+app.get('/',(req: Request, res: Response) => {
     res.send('Hello world!');
 })
 
 
 //post request endpoint:
-app.post('/', (req, res) => {
+app.post('/', (req: Request, res: Response) => {
     res.send({
         data: req.body
     })

@@ -27,6 +27,34 @@ app.get('/details/:id',(req: Request, res: Response) => {
         database    : process.env.DATABASE,
         connectionLimit: 10,        //This is the maximum number of connections before your pool starts waiting for a release
         multipleStatements : true
+    });
+
+    pool.getConnection(function (err: any, conn: any) {
+        if (err)
+        {
+            console.log('Entered into error')
+            console.log(err)
+            res.send({
+                success: false,
+                statusCode: 500,
+                message: 'Getting error during the connection'
+            })
+
+            return;
+        }
+
+        console.log('The id: ' + req.params.id);
+
+        //if you got a connection ...
+        conn.query('SELECT * FROM actor WHERE actor_id=?', [req.params.id], function(err : any, rows : any) {
+            if(err) {
+                conn.release();
+                return res.send({
+                    success: false,
+                    statusCode: 400 
+                })
+            }
+        })
     })
 
 

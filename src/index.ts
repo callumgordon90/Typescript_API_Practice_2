@@ -3,7 +3,7 @@ import bodyParser from 'body-parser';
 import { Request, Response } from 'express';
 import mysql from 'mysql';
 import dotenv from 'dotenv';
-//The following line enables us to import dotenv:
+//The following line enables us to import and run dotenv:
 dotenv.config();
 
 const app = express();
@@ -19,6 +19,20 @@ app.use(bodyParser.json())
 
 //This is a get endpoint:
 app.get('/details/:id',(req: Request, res: Response) => {
+
+    var pool = mysql.createPool({
+        host        : process.env.HOST,
+        user        : process.env.USER,
+        password    : process.env.PASSWORD,
+        database    : process.env.DATABASE,
+        connectionLimit: 10,        //This is the maximum number of connections before your pool starts waiting for a release
+        multipleStatements : true
+    })
+
+
+
+
+
     res.send({
         message: "Hello World!",
         id: req.params.id,

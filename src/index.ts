@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import { Request, Response } from 'express';
 import mysql from 'mysql';
+import dotenv from 'dotenv';
 
 const app = express();
 
@@ -35,6 +36,6 @@ app.post('/Id/:id/Name/:name', (req: Request, res: Response) => {
     })
 })
 
-app.listen(3000, () => {
+app.listen(process.env.PORT, () => {
     console.log('The application is listening on port 3000!')
 })
